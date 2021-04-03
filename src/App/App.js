@@ -3,7 +3,9 @@ import {Route, Link} from 'react-router-dom';
 import LandingPage from '../LandingPage/LandingPage';
 import LogIn from '../LogIn/LogIn';
 import SignUp from '../SignUp/SignUp';
-
+import ProjectListMain from '../ProjectListMain/ProjectListMain';
+import DemoProject from '../DemoProject/DemoProject';
+import AddProject from '../AddProject/AddProject';
 
 class App extends Component {
   
@@ -22,6 +24,18 @@ class App extends Component {
           path = '/sign-up'
           component = {SignUp}
         />
+        <Route
+          path = '/my-projects'
+          component = {ProjectListMain}
+        />
+        <Route
+          path = '/new-project'
+          component = {AddProject}
+        />
+        <Route
+          path = '/demo'
+          component = {DemoProject}
+        />
       </>
     )
   }
@@ -33,6 +47,9 @@ class App extends Component {
           <h1>Make A Plan</h1>
           <nav>
             <Link to = '/'>Home | </Link>
+            <Link to = '/new-project'>New Project |</Link>
+            <Link to = '/my-projects'>My Projects | </Link>
+            <Link to = 'demo'>Demo | </Link>
             <Link to = '/log-in'>Log In | </Link>
             <Link to = '/sign-up'>Sign Up</Link>
           </nav>
