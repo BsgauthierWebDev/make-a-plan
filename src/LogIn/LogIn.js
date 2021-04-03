@@ -18,7 +18,10 @@ class LogIn extends Component {
                         Password: 
                     </label>
                     <input type = 'password' name = 'password' id = 'password' />
+                    <br />
                     <button type = 'submit'>Sign In</button>
+                    <br />
+                    <p> <em>Forgot Password</em></p>
                 </form>
             </div>
         )
