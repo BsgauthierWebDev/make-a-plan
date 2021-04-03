@@ -6,6 +6,7 @@ import SignUp from '../SignUp/SignUp';
 import ProjectListMain from '../ProjectListMain/ProjectListMain';
 import DemoProject from '../DemoProject/DemoProject';
 import AddProject from '../AddProject/AddProject';
+import ContactUs from '../ContactUs/ContactUs';
 
 class App extends Component {
   
@@ -36,6 +37,10 @@ class App extends Component {
           path = '/demo'
           component = {DemoProject}
         />
+        <Route
+          path = '/contact'
+          component = {ContactUs}
+        />
       </>
     )
   }
@@ -57,7 +62,12 @@ class App extends Component {
         <main className = 'App__main'>
           {this.renderMainRoutes()}
         </main>
-        <footer><h6>Copyright 2021 bsgauthierwebdev</h6></footer>
+        <footer>
+          <h6>Copyright 2021 bsgauthierwebdev</h6>
+          <h6>
+            <Link to = '/contact'>Contact us</Link>
+            </h6>
+          </footer>
       </div>
     )
   }
