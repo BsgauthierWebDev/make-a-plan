@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Context from '../../context';
-import AuthApiService from '../../services.auth-api-service';
+import AuthApiService from '../../services/auth-api-service';
 import './SignUp.css';
 
 class SignUp extends Component {
