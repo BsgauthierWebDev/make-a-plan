@@ -3,10 +3,9 @@ import {Route, Link} from 'react-router-dom';
 import LandingPage from '../LandingPage/LandingPage';
 import LogIn from '../LogIn/LogIn';
 import SignUp from '../SignUp/SignUp';
-import ProjectListMain from '../ProjectListMain/ProjectListMain';
 import DemoProject from '../DemoProject/DemoProject';
-import AddProject from '../AddProject/AddProject';
 import ContactUs from '../ContactUs/ContactUs';
+import Dashboard from '../Dashboard/Dashboard';
 
 class App extends Component {
   
@@ -26,12 +25,8 @@ class App extends Component {
           component = {SignUp}
         />
         <Route
-          path = '/my-projects'
-          component = {ProjectListMain}
-        />
-        <Route
-          path = '/new-project'
-          component = {AddProject}
+          path = '/user'
+          component = {Dashboard}
         />
         <Route
           path = '/demo'

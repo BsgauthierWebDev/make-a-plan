@@ -77,7 +77,7 @@ class SignUp extends Component {
                         <div className = 'SignUp__form-email'>
                             <label htmlFor = 'email'>Email Address: </label>
                             <input 
-                                placeHolder = 'Your Email' 
+                                placeholder = 'Your Email' 
                                 type = 'text' 
                                 name = 'email' 
                                 id = 'email'
@@ -97,6 +97,7 @@ class SignUp extends Component {
                         <div className = 'SignUp__form-password'>
                             <label htmlFor = 'password'>Password: </label>
                             <input
+                                placeholder = 'Password'
                                 type = 'password'
                                 name = 'password'
                                 id = 'password'

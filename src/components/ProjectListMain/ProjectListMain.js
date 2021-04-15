@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import React from 'react';
+import {Route, Link} from 'react-router-dom';
 import Project from '../Project/Project';
 import ApiContext from '../../ApiContext';
-import {getProjectsForUser} from '../../projects-helpers';
+import TokenService from '../../services/token-service';
+import ProjectApiService from '../../services/project-api-service';
 
 export default class ProjectListMain extends React.Component {
     static defaultProps = {
@@ -13,14 +14,12 @@ export default class ProjectListMain extends React.Component {
     static contextType = ApiContext
 
     render() {
-        const {user_id} = this.props.match.params
         const {projects = []} = this.context
-        const projectsForUser = getProjectsForUser(projects, user_id)
 
         return (
             <section className = 'ProjectListMain'>
                 <div className = 'ProjectListMain__button-container'>
-                    <Link to = '/add-project'>
+                    <Link to = '/new-project'>
                         <button
                             type = 'button'
                             className = 'ProjectListMain__add-project-button'
@@ -30,12 +29,12 @@ export default class ProjectListMain extends React.Component {
                     </Link>
                 </div>
                 <ul>
-                    {projectsForUser.map(project =>
+                    {projects.map(project =>
                         <li key = {project.id}>
                             <Project
                                 id = {project.id}
                                 name = {project.name}
-                                modifled = {project.modified}
+                                modified = {project.modified}
                             />
                         </li>
                     )}

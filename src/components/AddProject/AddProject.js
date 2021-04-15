@@ -195,7 +195,7 @@ class AddProject extends Component {
                                 )}
                         </div>
                         <div className = 'AddProject__steps'>
-                            <label htmlFor = 'stepsInput'>*Steps: </label>
+                            {/* <label htmlFor = 'stepsInput'>*Steps: </label>
                             <br />
                             <textarea
                                 name = 'AddProject__input-steps'
@@ -205,7 +205,18 @@ class AddProject extends Component {
                                 required />
                                 {this.state.steps.touched && (
                                     <ValidationError message = {stepsError} />
+                                )} */}
+                            <ul>
+                                {steps.map(step =>
+                                    <li key = {step.id}>
+                                        <Step
+                                            id = {step.id}
+                                            name = {project.name}
+                                            modified = {project.modified}
+                                        />
+                                    </li>
                                 )}
+                            </ul>
                         </div>
                         <div className = 'AddProject__button'>
                             <button type = 'submit' className = 'AddProject__input-button'>
