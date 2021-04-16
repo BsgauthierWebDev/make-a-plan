@@ -46,12 +46,10 @@ class App extends Component {
         <header className = 'App__header'>
           <h1>Make A Plan</h1>
           <nav>
-            <Link to = '/'>Home | </Link>
-            <Link to = '/new-project'>New Project |</Link>
-            <Link to = '/my-projects'>My Projects | </Link>
             <Link to = 'demo'>Demo | </Link>
             <Link to = '/log-in'>Log In | </Link>
-            <Link to = '/sign-up'>Sign Up</Link>
+            <Link to = '/sign-up'>Sign Up | </Link>
+            <Link to = '/user'>My Account</Link>
           </nav>
         </header>
         <main className = 'App__main'>
