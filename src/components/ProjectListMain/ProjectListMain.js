@@ -28,17 +28,22 @@ export default class ProjectListMain extends React.Component {
                         </button>
                     </Link>
                 </div>
-                <ul>
-                    {projects.map(project =>
-                        <li key = {project.id}>
-                            <Project
-                                id = {project.id}
-                                name = {project.name}
-                                modified = {project.modified}
-                            />
-                        </li>
-                    )}
-                </ul>
+                <div className = 'ProjectListMain__projects'>
+                    <ul>
+                        {projects.map(project =>
+                            <li key = {project.id}>
+                                <Project
+                                    id = {project.id}
+                                    name = {project.name}
+                                    modified = {project.modified}
+                                />
+                            </li>
+                        )}
+                    </ul>
+                </div>
+                <div>
+                    <h1>Test</h1>
+                </div>
             </section>
         )
     }
