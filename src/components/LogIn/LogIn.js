@@ -20,7 +20,7 @@ class LogIn extends Component {
 
     handleLoginSuccess = () => {
         const {history} = this.props
-        history.push('/my-projects')
+        history.push('/user')
         TokenService.hasAuthToken()
     }
 

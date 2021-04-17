@@ -94,7 +94,7 @@ class AddProject extends Component {
         })
             .then(resProject => {
             this.context.addProject(resProject)
-            this.props.history.push('/projects')
+            this.props.history.push('/user/my-projects')
             })
             .catch(error => {
                 console.error('add project', {error})
@@ -141,7 +141,7 @@ class AddProject extends Component {
     }
 
     handleClickCancel = () => {
-        this.props.history.push('/projects')
+        this.props.history.push('/user/my-projects')
     };
 
 
@@ -195,7 +195,7 @@ class AddProject extends Component {
                                 )}
                         </div>
                         <div className = 'AddProject__steps'>
-                            {/* <label htmlFor = 'stepsInput'>*Steps: </label>
+                            <label htmlFor = 'stepsInput'>*Steps: </label>
                             <br />
                             <textarea
                                 name = 'AddProject__input-steps'
@@ -205,8 +205,8 @@ class AddProject extends Component {
                                 required />
                                 {this.state.steps.touched && (
                                     <ValidationError message = {stepsError} />
-                                )} */}
-                            <ul>
+                                )}
+                            {/* <ul>
                                 {steps.map(step =>
                                     <li key = {step.id}>
                                         <Step
@@ -216,7 +216,7 @@ class AddProject extends Component {
                                         />
                                     </li>
                                 )}
-                            </ul>
+                            </ul> */}
                         </div>
                         <div className = 'AddProject__button'>
                             <button type = 'submit' className = 'AddProject__input-button'>

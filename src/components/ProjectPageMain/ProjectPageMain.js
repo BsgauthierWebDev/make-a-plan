@@ -15,9 +15,15 @@ export default class ProjectPageMain extends React.Component {
     }
 
     render() {
-        const {projects = []} = this.context
-        const {projectId} = this.props.match.params
+        const {
+            projects = [],
+            materials = [],
+            steps = []
+        } = this.context
+        const {projectId, itemId, stepId} = this.props.match.params
         const project = projects.find(project => project.id == projectId)
+        const materials = materials.find(item => item.id == itemId)
+        const steps = steps.find(step => step.id == stepId)
 
         return (
             <section className = 'ProjectPageMain'>
@@ -25,6 +31,8 @@ export default class ProjectPageMain extends React.Component {
                     id = {project.id}
                     name = {project.name}
                     modified = {project.modified}
+                    item = {materials.item}
+                    step = {steps.step}
                     onDeleteProject = {this.handleDeleteProject}
                     history = {this.props.history}
                 />
@@ -32,6 +40,18 @@ export default class ProjectPageMain extends React.Component {
                     <h4>Description: </h4>
                     {project.description.split(/\n \r|\n/).map((para, i) =>
                         <p key = {i}>{para}</p>
+                    )}
+                </div>
+                <div className = 'ProjectPageMain__materials'>
+                    <h4>Materials: </h4>
+                    {materials.item.split(/\n \r|\n/).map((para, i) =>
+                    <p key = {i}>{para}</p>
+                    )}
+                </div>
+                <div className = 'ProjectPageMain__steps'>
+                    <h4>Steps: </h4>
+                    {steps.step.split(/\n \r|\n/).map((para, i) =>
+                    <p key = {i}>{para}</p>
                     )}
                 </div>
             </section>

@@ -42,7 +42,7 @@ export class ProjectListProvider extends Component {
         const value = {
             projects: this.state.projects,
             isLoggedIn: this.state.isLoggedIn,
-            setProjectLis: this.setProjectList,
+            setProjectList: this.setProjectList,
             addProject: this.addProject,
             handleLog: this.handleLog
         }

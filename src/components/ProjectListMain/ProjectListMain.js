@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import Project from '../Project/Project';
 import ApiContext from '../../ApiContext';
 import TokenService from '../../services/token-service';
@@ -19,7 +19,7 @@ export default class ProjectListMain extends React.Component {
         return (
             <section className = 'ProjectListMain'>
                 <div className = 'ProjectListMain__button-container'>
-                    <Link to = '/new-project'>
+                    <Link to = '/user/new-project'>
                         <button
                             type = 'button'
                             className = 'ProjectListMain__add-project-button'
