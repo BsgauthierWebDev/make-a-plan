@@ -12,6 +12,7 @@ import ProjectListMain from '../ProjectListMain/ProjectListMain';
 import TestPage from '../TestPage/TestPage';
 import DashboardMain from '../DashboardMain/DashboardMain';
 import DashboardNav from '../DashboardNav/DashboardNav';
+import Store from '../../Store';
 
 import ContactUs from '../ContactUs/ContactUs';
 import context from '../../context';
@@ -23,9 +24,13 @@ export default class Dashboard extends React.Component {
     //set state with API call or demo data if no auth token
     // componentDidMount() {
     //     const projectCall = TokenService.hasAuthToken() ? ProjectApiService.getProjects() : Store.projects
-    //         Promise.all([projectCall])
-    //             .then(([projects]) => {
+    //     const materialCall = TokenService.hasAuthToken() ? ProjectApiService.getMaterials() : Store.materials
+    //     const stepCall = TokenService.hasAuthToken() ? ProjectApiService.getSteps() : Store.steps
+    //         Promise.all([projectCall, materialCall, stepCall])
+    //             .then(([projects, materials, steps]) => {
     //                 this.context.setProjectList(projects)
+    //                 this.context.setMaterialList(materials)
+    //                 this.context.setStepsList(steps)
     //             })
 
     //         .catch(error => {
@@ -117,7 +122,7 @@ export default class Dashboard extends React.Component {
               component = {DemoProject}
             />
             <Route
-                path = 'user/test-page'
+                path = '/user/test-page'
                 component = {TestPage}
             />
           </>
