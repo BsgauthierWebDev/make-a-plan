@@ -37,12 +37,12 @@ export default class Project extends React.Component {
     render() {
         const {name, id, modified} = this.props
         if (!this.props.id) {
-            return <Redirect to = '/user/my-projects' />
+            return <Redirect to = '/user/projects' />
         }
         return (
             <div className = 'Project'>
                 <h2 className = 'Project__title'>
-                    <Link to = {`/user/my-projects/${id}`}>
+                    <Link to = {`/user/projects/${id}`}>
                         {name}
                     </Link>
                 </h2>

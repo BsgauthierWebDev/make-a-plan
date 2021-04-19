@@ -94,7 +94,7 @@ class AddProject extends Component {
         })
             .then(resProject => {
             this.context.addProject(resProject)
-            this.props.history.push('/user/my-projects')
+            this.props.history.push('/user/projects')
             })
             .catch(error => {
                 console.error('add project', {error})
@@ -141,7 +141,7 @@ class AddProject extends Component {
     }
 
     handleClickCancel = () => {
-        this.props.history.push('/user/my-projects')
+        this.props.history.push('/user/projects')
     };
 
 

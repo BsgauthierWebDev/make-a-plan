@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 
 const Context = React.createContext({
     projects: [],
+    materials: [],
+    steps: [],
     isLoggedIn: false,
-    addProject: () => {}
+    setProjectList: () => [],
+    addProject: () => {},
+    deleteProject: () => [],
+    handleLog: () => []
 })
 
 export default Context

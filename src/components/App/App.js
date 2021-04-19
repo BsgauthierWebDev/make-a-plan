@@ -6,8 +6,13 @@ import SignUp from '../SignUp/SignUp';
 import DemoProject from '../DemoProject/DemoProject';
 import ContactUs from '../ContactUs/ContactUs';
 import Dashboard from '../Dashboard/Dashboard';
+import TestPage from '../TestPage/TestPage';
+import DashboardMain from '../DashboardMain/DashboardMain';
+import Context from '../../context';
+import NavBar from '../NavBar/NavBar';
 
 class App extends Component {
+  static contextType = Context
   
   renderMainRoutes() {
     return (
@@ -36,6 +41,10 @@ class App extends Component {
           path = '/contact'
           component = {ContactUs}
         />
+        <Route
+          path = '/test'
+          component = {TestPage}
+        />
       </>
     )
   }
@@ -43,15 +52,18 @@ class App extends Component {
   render() {
     return (
       <div className = 'App'>
-        <header className = 'App__header'>
+        <NavBar />
+        {/* <header className = 'App__header'>
           <h1>Make A Plan</h1>
           <nav>
             <Link to = 'demo'>Demo | </Link>
             <Link to = '/log-in'>Log In | </Link>
             <Link to = '/sign-up'>Sign Up | </Link>
-            <Link to = '/user'>My Account</Link>
+            <Link to = '/user'>My Account | </Link>
+            <Link to = '/contact'>Contact Us |</Link>
+            <Link to = '/test'>Test Page | </Link>
           </nav>
-        </header>
+        </header> */}
         <main className = 'App__main'>
           {this.renderMainRoutes()}
         </main>

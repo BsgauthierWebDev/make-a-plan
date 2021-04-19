@@ -11,7 +11,7 @@ export default class ProjectPageMain extends React.Component {
     static contextType = ApiContext
 
     handleDeleteProject = projectId => {
-        this.props.history.push('/my-projects')
+        this.props.history.push('/projects')
     }
 
     render() {
