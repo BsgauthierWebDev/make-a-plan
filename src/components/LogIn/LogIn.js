@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import Context from '../../context';
 //import ValidationError from '../ValidationError';
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
 import './LogIn.css';
 
-class LogIn extends Component {
+export default class LogIn extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -17,6 +18,8 @@ class LogIn extends Component {
             push: () => {}
         }
     }
+
+    static contextType = Context
 
     handleLoginSuccess = () => {
         const {history} = this.props
@@ -75,5 +78,3 @@ class LogIn extends Component {
         )
     }
 }
-
-export default LogIn;
