@@ -9,9 +9,13 @@ import LandingPage from '../LandingPage/LandingPage';
 import AddProject from '../AddProject/AddProject';
 import DemoProject from '../DemoProject/DemoProject';
 import ProjectListMain from '../ProjectListMain/ProjectListMain';
+import TestPage from '../TestPage/TestPage';
+import DashboardMain from '../DashboardMain/DashboardMain';
+import DashboardNav from '../DashboardNav/DashboardNav';
 
 import ContactUs from '../ContactUs/ContactUs';
 import context from '../../context';
+import DashboardProject from '../DashboardProject/DashboardProject';
 
 export default class Dashboard extends React.Component {
     static contextType = context
@@ -63,15 +67,45 @@ export default class Dashboard extends React.Component {
             });
     }
 
+    openNav() {
+        document.getElementById('DashboardNav').style.width = '250px';
+    }
+
+    renderNavRoutes() {
+        return (
+            <>
+                {['/user', '/user/projects/:projectId', '/user/add-project'].map(path => (
+                    <Route
+                        exact
+                            key = {path}
+                            path = {path}
+                            component = {DashboardNav}
+                    />
+                ))}
+            </>
+        )
+    }
+
     renderMainRoutes() {
         return (
           <>
+            {['/user/projects/:projectId'].map(path => (
+                <Route
+                    key = {path}
+                    path = {path}
+                    component = {DashboardProject}
+                />
+            ))}
             <Route 
               exact path = '/' 
               component = {LandingPage} 
             />
             <Route
-              path = '/user/my-projects'
+                exact path = '/user'
+                component = {DashboardMain}
+            />
+            <Route
+              path = '/user/projects'
               component = {ProjectListMain}
             />
             <Route
@@ -83,8 +117,8 @@ export default class Dashboard extends React.Component {
               component = {DemoProject}
             />
             <Route
-              path = '/user/contact'
-              component = {ContactUs}
+                path = 'user/test-page'
+                component = {TestPage}
             />
           </>
         )
@@ -95,11 +129,22 @@ export default class Dashboard extends React.Component {
               <div className = 'Dashboard'>
                   <div className = 'Dashboard__nav'>
                       <Link to = '/'>Home | </Link>
-                      <Link to = '/user/my-projects'>My Projects | </Link>
+                      <Link to = '/user'>My Account | </Link>
+                      <Link to = '/user/projects'>My Projects | </Link>
                       <Link to = '/user/new-project'>Add a Project | </Link>
-                      <Link to = '/user/contact'>Contact Us</Link>
+                      <Link to = '/user/test-page'>User Test</Link>
+                      {this.renderNavRoutes()}
                   </div>
-                  <div className = 'Dashboard__main'>
+                  {/* <div className = 'Dashboard__main'>
+                      <button
+                        className = 'Dashboard__link'
+                        id = 'menu'
+                        onClick = {e => this.openNav()}
+                    >
+                        Menu
+                    </button>
+                  </div> */}
+                  <div className = 'Dashboard__render'>
                       {this.renderMainRoutes()}
                   </div>
               </div>
