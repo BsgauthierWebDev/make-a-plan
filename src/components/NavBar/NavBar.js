@@ -33,6 +33,17 @@ export default class NavBar extends React.Component {
             </div>
         )
     }
+    
+    renderSignUpLink() {
+        return (
+            <div className = 'Header__sign-up'>
+                <Link
+                    to = '/sign-up'>
+                        Sign Up
+                    </Link>
+            </div>
+        )
+    }
 
     renderUserLink() {
         return (
@@ -73,11 +84,14 @@ export default class NavBar extends React.Component {
                 </div> */}
                 <ul id = 'menu' className = 'NavManu'>
                     <li className = 'logo'><Link to = {'/'}>Make A Plan</Link></li>
-                    <li>
+                    {/* <li>
                         {TokenService.hasAuthToken()
                             ? this.renderLogoutLink()
                             : this.renderLoginLink()}
-                    </li>
+                    </li> */}
+                    <li>{this.renderLoginLink()}</li>
+                    <li>{this.renderLogoutLink()}</li>
+                    <li>{this.renderSignUpLink()}</li>
                     <li>
                         {TokenService.hasAuthToken()
                             ? this.renderUserLink()
