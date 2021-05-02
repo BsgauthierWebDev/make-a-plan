@@ -1,25 +1,24 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
-import config from '../../config';
-import Project from '../Project/Project';
-import ApiContext from '../../ApiContext';
+import {Route} from 'react-router-dom';
+// import config from '../../config';
+// import Project from '../Project/Project';
 import TokenService from '../../services/token-service';
-import ProjectApiService from '../../services/project-api-service';
-import LandingPage from '../LandingPage/LandingPage';
-import AddProject from '../AddProject/AddProject';
-import DemoProject from '../DemoProject/DemoProject';
-import ProjectListMain from '../ProjectListMain/ProjectListMain';
-import TestPage from '../TestPage/TestPage';
-import DashboardMain from '../DashboardMain/DashboardMain';
+// import ProjectApiService from '../../services/project-api-service';
+// import LandingPage from '../LandingPage/LandingPage';
+// import AddProject from '../AddProject/AddProject';
+// import DemoProject from '../DemoProject/DemoProject';
+// import ProjectListMain from '../ProjectListMain/ProjectListMain';
+// import TestPage from '../TestPage/TestPage';
+// import DashboardMain from '../DashboardMain/DashboardMain';
 import DashboardNav from '../DashboardNav/DashboardNav';
-import Store from '../../Store';
+// import Store from '../../Store';
+import Context from '../../context';
 
-import ContactUs from '../ContactUs/ContactUs';
-import context from '../../context';
-import DashboardProject from '../DashboardProject/DashboardProject';
+// import ContactUs from '../ContactUs/ContactUs';
+// import context from '../../context';
 
 export default class Dashboard extends React.Component {
-    static contextType = context
+    static contextType = Context
 
     //set state with API call or demo data if no auth token
     // componentDidMount() {
@@ -37,40 +36,6 @@ export default class Dashboard extends React.Component {
     //             console.error({error});
     //         })
     // }
-
-    componentDidMount() {
-        const reqConfig = {
-            headers: {
-                'content-type': 'application/json',
-                'authorization': `Bearer ${TokenService.getAuthToken()}`,
-            }
-        }
-        Promise.all([
-            fetch(`${config.API_ENDPOINT}/projects`, reqConfig),
-            fetch(`${config.API_ENDPOINT}/materials`, reqConfig),
-            fetch(`${config.API_ENDPOINT}/steps`, reqConfig)
-        ])
-            .then(([projectsRes, materialsRes, stepsRes]) => {
-                if (!projectsRes.ok)
-                    return projectsRes.json().then(e => Promise.reject(e));
-                if (!materialsRes.ok)
-                    return materialsRes.json().then(e => Promise.reject(e));
-                if (!stepsRes.ok)
-                    return stepsRes.json().then(e => Promise.reject(e));
-
-                return Promise.all([
-                    projectsRes.json(),
-                    materialsRes.json(),
-                    stepsRes.json()
-                ]);
-            })
-            .then(([projects, materials, steps]) => {
-                this.setState({projects, materials, steps});
-            })
-            .catch(error => {
-                console.error({error});
-            });
-    }
 
     openNav() {
         document.getElementById('DashboardNav').style.width = '250px';
@@ -91,55 +56,72 @@ export default class Dashboard extends React.Component {
         )
     }
 
-    renderMainRoutes() {
-        return (
-          <>
-            {['/user/projects/:projectId'].map(path => (
-                <Route
-                    key = {path}
-                    path = {path}
-                    component = {DashboardProject}
-                />
-            ))}
-            <Route 
-              exact path = '/' 
-              component = {LandingPage} 
-            />
-            <Route
-                exact path = '/user'
-                component = {DashboardMain}
-            />
-            <Route
-              path = '/user/projects'
-              component = {ProjectListMain}
-            />
-            <Route
-              path = '/user/new-project'
-              component = {AddProject}
-            />
-            <Route
-              path = '/demo'
-              component = {DemoProject}
-            />
-            <Route
-                path = '/user/test-page'
-                component = {TestPage}
-            />
-          </>
-        )
-      }
+    // renderMainRoutes() {
+    //     return (
+    //       <>
+    //         {['/user/projects/:projectId'].map(path => (
+    //             <Route
+    //                 key = {path}
+    //                 path = {path}
+    //                 component = {DashboardProject}
+    //             />
+    //         ))}
+    //         <Route 
+    //           exact path = '/' 
+    //           component = {LandingPage} 
+    //         />
+    //         {/* <Route
+    //             exact path = '/user'
+    //             component = {Dashboard}
+    //         /> */}
+    //         <Route
+    //           path = '/user/projects'
+    //           component = {ProjectListMain}
+    //         />
+    //         <Route
+    //           path = '/user/new-project'
+    //           component = {AddProject}
+    //         />
+    //         <Route
+    //           path = '/demo'
+    //           component = {DemoProject}
+    //         />
+    //         <Route
+    //             path = '/user/test-page'
+    //             component = {TestPage}
+    //         />
+    //       </>
+    //     )
+    //   }
 
       render() {
+        const {users} = this.context
+        const {username} = this.props
+
+        // const value = {
+        //     projects: this.state.projects
+        // }
+
           return (
+            //   <Context.Provider value = {value}>
               <div className = 'Dashboard'>
-                  <div className = 'Dashboard__nav'>
+                  {/* <div className = 'Dashboard__nav'>
                       <Link to = '/'>Home | </Link>
                       <Link to = '/user'>My Account | </Link>
                       <Link to = '/user/projects'>My Projects | </Link>
                       <Link to = '/user/new-project'>Add a Project | </Link>
                       <Link to = '/user/test-page'>User Test</Link>
-                      {this.renderNavRoutes()}
+                  </div> */}
+                  <div className = 'Dashboard__main-intro'>
+                  <h1>
+                        {TokenService.hasAuthToken()
+                            ? `Hello ${username}, welcome to your account`
+                            : 'Demo Dashboard'}
+                    </h1>
                   </div>
+                  {/* <div className = 'Dashboard__main-routes'>
+                    {this.renderMainRoutes()}
+                  </div> */}
                   {/* <div className = 'Dashboard__main'>
                       <button
                         className = 'Dashboard__link'
@@ -149,10 +131,11 @@ export default class Dashboard extends React.Component {
                         Menu
                     </button>
                   </div> */}
-                  <div className = 'Dashboard__render'>
+                  {/* <div className = 'Dashboard__render'>
                       {this.renderMainRoutes()}
-                  </div>
+                  </div> */}
               </div>
+            //   </Context.Provider>
           )
       }
 

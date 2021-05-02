@@ -16,24 +16,34 @@ export default Context
 export class ProjectListProvider extends Component {
     state = {
         projects: [],
+        materials: [],
+        steps: []
     };
 
     setProjectList = projects => {
         this.setState({projects})
     }
 
-    // deleteProject = projectId => {
-    //     const newProject = this.state.projects.filter(project => project.id !=projectId)
-    //     this.setState({
-    //         projects: newList
-    //     },)
-    // }
+    setMaterialsList = materials => {
+        this.setState({materials})
+    }
 
-    // addProject = project => {
-    //     this.setState({
-    //         projects: [...this.state.projects, project]
-    //     },)
-    // }
+    setStepsList = steps => {
+        this.setState({steps})
+    }
+
+    deleteProject = projectId => {
+        const updatedProjects = this.state.projects.filter(project => project.id !=projectId)
+        this.setState({
+            projects: updatedProjects
+        },)
+    }
+
+    addProject = project => {
+        this.setState({
+            projects: [...this.state.projects, project]
+        },)
+    }
     
     handleLog = e => {
         this.setState(prevState => {
@@ -48,7 +58,10 @@ export class ProjectListProvider extends Component {
             projects: this.state.projects,
             isLoggedIn: this.state.isLoggedIn,
             setProjectList: this.setProjectList,
+            setMaterialsList: this.setMaterialsList,
+            setStepsList: this.setStepsList,
             addProject: this.addProject,
+            deleteProject: this.deleteProject,
             handleLog: this.handleLog
         }
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Project from '../Project/Project';
-import ApiContext from '../../ApiContext';
+import Context from '../../context'
 import TokenService from '../../services/token-service';
 import ProjectApiService from '../../services/project-api-service';
+import {getProjectsForUser} from '../../helpers';
 
 export default class ProjectListMain extends React.Component {
     static defaultProps = {
@@ -11,10 +12,12 @@ export default class ProjectListMain extends React.Component {
             params: {}
         }
     }
-    static contextType = ApiContext
+    static contextType = Context
 
     render() {
+        const {user_id} = this.props.match.params
         const {projects = []} = this.context
+        // const projectsForUser = getProjectsForUser(projects, user_id)
 
         return (
             <section className = 'ProjectListMain'>

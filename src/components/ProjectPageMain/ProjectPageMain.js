@@ -1,6 +1,7 @@
 import React from 'react';
 import Project from '../Project/Project';
-import ApiContext from '../../ApiContext';
+import Context from '../../context';
+import ProjectApiService from '../../services/project-api-service';
 
 export default class ProjectPageMain extends React.Component {
     static defaultProps = {
@@ -8,11 +9,24 @@ export default class ProjectPageMain extends React.Component {
             params: {}
         }
     }
-    static contextType = ApiContext
+    static contextType = Context
 
-    handleDeleteProject = projectId => {
-        this.props.history.push('/projects')
-    }
+    // handleDeleteProject = projectId => {
+    //     this.props.history.push('/projects')
+    // }
+
+    // handleDeleteProject = e => {
+    //     e.preventDefault()
+    //     const {projectId} = this.props.match.params
+    //     ProjectApiService.deleteProject({id: projectId})
+    //         .then(res => {
+    //             this.context.deleteProject(projectId)
+    //             this.props.history.goBack()
+    //         })
+    //         .catch(error => {
+    //             console.error('delete project', {error})
+    //         })
+    // }
 
     render() {
         const {
@@ -20,10 +34,11 @@ export default class ProjectPageMain extends React.Component {
             materials = [],
             steps = []
         } = this.context
-        const {projectId, itemId, stepId} = this.props.match.params
+        const {projectId} = this.props.match.params
+        // const {projectId, itemId, stepId} = this.props.match.params
         const project = projects.find(project => project.id == projectId)
-        const materials = materials.find(item => item.id == itemId)
-        const steps = steps.find(step => step.id == stepId)
+        // const materials = materials.find(item => item.id == itemId)
+        // const steps = steps.find(step => step.id == stepId)
 
         return (
             <section className = 'ProjectPageMain'>
@@ -33,7 +48,7 @@ export default class ProjectPageMain extends React.Component {
                     modified = {project.modified}
                     item = {materials.item}
                     step = {steps.step}
-                    onDeleteProject = {this.handleDeleteProject}
+                    // onDeleteProject = {this.handleDeleteProject}
                     history = {this.props.history}
                 />
                 <div className = 'ProjectPageMain__description'>

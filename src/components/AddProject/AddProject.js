@@ -1,45 +1,34 @@
-import React, {Component} from 'react';
-import Context from '../../context';
-import SimpleFileUpload from 'react-simple-file-upload';
-import ProjectApiService from '../../services/project-api-service';
-import TokenService from '../../services/token-service';
+import React from 'react';
 import ProjectError from '../../ProjectError';
 import ValidationError from '../../ValidationError';
+import Context from '../../context';
 import moment from 'moment';
-import './AddProject.css';
+import ProjectApiService from '../../services/project-api-service';
+import TokenService from '../../services/token-service';
+import config from '../../config';
 
-class AddProject extends Component {
+export default class AddProjects extends React.Component {    
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             name: {
                 value: '',
-                touched: false,
-                error: null
+                touched: false
             },
+            modified: '',
             description: {
                 value: '',
-                touched: false,
-                error: null
+                touched: false
             },
             materials: {
                 value: '',
-                touched: false,
-                error: null
+                touched: false
             },
             steps: {
                 value: '',
-                touched: false,
-                error: null
-            },
-            user_id: {
-                value: '',
-                touched: false,
-                error: null
-            },
-            modified:'',
-            formTouched: false
-        }
+                touched: false
+            }
+        };
     }
 
     static defaultProps = {
@@ -49,14 +38,14 @@ class AddProject extends Component {
     }
 
     static contextType = Context
-    // collect required data before submit
-    updateValue = (value, key) => {
-        this.setState({[key]: {value: value}})
-    }
+    //collect required data before project submit
+    // updateValue = (value, key) => {
+    //     this.setState({[key]: {value: value}})
+    // }
 
     updateName(name, modified) {
         this.setState({name: {value: name, touched: true}});
-        this.updateModified(modified)
+        this.updateModified(modified);
     }
 
     updateModified(modified) {
@@ -65,45 +54,75 @@ class AddProject extends Component {
 
     updateDescription(description, modified) {
         this.setState({description: {value: description, touched: true}});
-        this.updateModified(modified)
+        this.updateModified(modified);
     }
-
+    
     updateMaterials(materials, modified) {
-        this.setState({description: {value: materials, touched: true}});
-        this.updateModified(modified)
+        this.setState({materials: {value: materials, touched: true}});
+        this.updateModified(modified);
     }
 
     updateSteps(steps, modified) {
-        this.setState({description: {value: steps, touched: true}});
-        this.updateModified(modified)
+        this.setState({steps: {value: steps, touched: true}});
+        this.updateModified(modified);
     }
 
-    updateUserId(user_id, modified) {
-        this.setState({description: {value: user_id, touched: true}});
-        this.updateModified(modified)
-    }
+    // handleSubmit = e => {
+    //     e.preventDefault();
+    //     const {
+    //         name,
+    //         description,
+    //         materials,
+    //         steps
+    //     } = e.target
+    //     ProjectApiService.postProject({
+    //         name: name.value,
+    //         description: description.value,
+    //         materials: materials.value,
+    //         steps: steps.value
+    //     })
+    //         .then(resProject => {
+    //             this.context.addProject(resProject)
+    //             this.props.history.push('/user/projects')
+    //         })
+    //         .catch(error => {
+    //             console.error('add project ', {error})
+    //         })
+    // }
 
-    handleProjectSubmit(e) {
-        ProjectApiService.postProject({
+    handleSubmit(e) {
+        e.preventDefault();
+        const project = {
             name: this.state.name.value,
+            // created: this.state.created.value,
+            modified: this.state.modified,
             description: this.state.description.value,
             materials: this.state.materials.value,
-            steps: this.state.steps.value,
-            user_id: this.state.user_id.value,
-            date_created: this.state.date_created.value,
+            steps: this.state.steps.value
+        }
+        console.log(project.modified)
+        fetch(`${config.API_ENDPOINT}/projects`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'content-type': 'application/json',
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
+            },
+            body: JSON.stringify(project)
         })
-            .then(resProject => {
-            this.context.addProject(resProject)
+            .then(res => res.json())
+            .then(resJSON => {
+                console.log(resJSON)
+                const newProject = [...this.state.projects, resJSON]
+                console.log(newProject)
+                this.setState({projects: newProject})
+                console.log(this.state)
+            // this.context.addProject(project)
             this.props.history.push('/user/projects')
-            })
-            .catch(error => {
-                console.error('add project', {error})
-            })
-    }
-
-    handleProjectInfo = e => {
-        e.preventDefault()
-        this.setState({formTouched: true})
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     timeStamp() {
@@ -116,34 +135,33 @@ class AddProject extends Component {
             return `Name is required.`;
         }
         else if (name.length < 3) {
-            return `Name must be at least three characters.`
+            return `Name must be at least 3 characters.`
         }
     }
     
     validateMaterials() {
-        const materials = this.state.materials.value.trim();
+        const materials = this.state.name.value.trim();
         if (materials.length === 0) {
-            return `Please add the materials needed to complete this project.`;
+            return `Materials are required.`;
         }
         else if (materials.length < 3) {
-            return `Materials must be at least three characters.`
+            return `Materials must be at least 3 characters.`
         }
     }
 
     validateSteps() {
         const steps = this.state.steps.value.trim();
         if (steps.length === 0) {
-            return `Please add the steps necessary to complete this project.`;
+            return `Steps are required.`;
         }
         else if (steps.length < 3) {
-            return `Steps must be at least three characters.`
+            return `Steps must be at least 3 characters.`
         }
     }
 
     handleClickCancel = () => {
         this.props.history.push('/user/projects')
     };
-
 
     render() {
         const nameError = this.validateName();
@@ -153,19 +171,19 @@ class AddProject extends Component {
 
         return (
             <>
-                <form className = 'AddProject' onSubmit = {e => this.handleProjectInfo(e)}>
+                <form className = 'AddProject' onSubmit = {e => this.handleSubmit(e)}>
                     <ProjectError>
-                        <h2>Add your project here!</h2>
+                        <h1>Add Your Project Details Here</h1>
                         <div className = 'AddProject__input'>* fields are required</div>
                         <div className = 'AddProject__name'>
-                            <label htmlFor = 'nameInput'>*Name: </label>
+                            <label htmlFor = 'nameInput'>* Name: </label>
                             <br />
                             <input
                                 type = 'text'
-                                className = 'AddProject__input-name'
+                                className = 'AddProject__name-input'
                                 name = 'name'
                                 id = 'name'
-                                placeholder = '<em>project name</em>'
+                                placeholder = 'project name'
                                 onChange = {e => this.updateName(e.target.value, modified)}
                                 required />
                                 {this.state.name.touched && (
@@ -176,18 +194,18 @@ class AddProject extends Component {
                             <label htmlFor = 'descriptionInput'>Description: </label>
                             <br />
                             <textarea
-                                name = 'AddProject__input-description'
+                                name = 'AddProject__description-input'
                                 rows = '5'
-                                placeholder = '<em>add a description of your project</em>'
-                                onChange = {e => this.updateDescription(e.target.value, modified)} />
+                                placeholder = 'add a description of your project here (optional)'
+                                onChange = {e => this.updateDescription(e.target.value, modified)}/>
                         </div>
                         <div className = 'AddProject__materials'>
-                            <label htmlFor = 'materialsInput'>*Materials: </label>
+                            <label htmlFor = 'materialsInput'>* Materials: </label>
                             <br />
                             <textarea
-                                name = 'AddProject__input-materials'
+                                name = 'AddProject__materials-input'
                                 rows = '10'
-                                placeholder = '<em>add the materials necessary for your project here</em>'
+                                placeholder = 'add the materials necessary to complete your project'
                                 onChange = {e => this.updateMaterials(e.target.value, modified)}
                                 required />
                                 {this.state.materials.touched && (
@@ -195,51 +213,30 @@ class AddProject extends Component {
                                 )}
                         </div>
                         <div className = 'AddProject__steps'>
-                            <label htmlFor = 'stepsInput'>*Steps: </label>
+                            <label htmlFor = 'stepsInput'>* Steps</label>
                             <br />
                             <textarea
-                                name = 'AddProject__input-steps'
-                                rows = '15'
-                                placeholder = '<em>add the steps necessary to complete your project here</em>'
+                                name = 'AddProject__steps-input'
+                                rows = '10'
+                                placeholder = 'add the steps necessary to complete your project'
                                 onChange = {e => this.updateSteps(e.target.value, modified)}
                                 required />
                                 {this.state.steps.touched && (
                                     <ValidationError message = {stepsError} />
                                 )}
-                            {/* <ul>
-                                {steps.map(step =>
-                                    <li key = {step.id}>
-                                        <Step
-                                            id = {step.id}
-                                            name = {project.name}
-                                            modified = {project.modified}
-                                        />
-                                    </li>
-                                )}
-                            </ul> */}
                         </div>
-                        <div className = 'AddProject__button'>
-                            <button type = 'submit' className = 'AddProject__input-button'>
+                        <div>
+                            <button type = 'submit' className = 'AddProject__button'>
                                 Save
                             </button>
-                        </div>
-                        <div className = 'AddProject__cancel'>
-                            <button type = 'button' className = 'AddProject__cancel' onClick = {this.handleClickCancel}>
+                            {'    '}
+                            <button type = 'cancel' className = 'AddProject__cancel' onClick = {this.handleClickCancel}>
                                 Cancel
                             </button>
                         </div>
                     </ProjectError>
-                    <div className = 'AddProject__auth'>
-                        {!TokenService.hasAuthToken()
-                            ? <p>* You must be logged in to add a project</p>
-                            : this.state.formTouched ?
-                            <SimpleFileUpload apiKey = '' onSuccess = {this.handleProjectSubmit} />
-                            :<p> * Please fill out the required information first</p> }
-                    </div>
                 </form>
             </>
         )
     }
 }
-
-export default AddProject;

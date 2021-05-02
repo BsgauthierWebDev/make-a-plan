@@ -1,8 +1,9 @@
 import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
 import {format} from 'date-fns';
-import ApiContext from '../../ApiContext';
+import Context from '../../context';
 import config from '../../config';
+import TokenService from '../../services/token-service';
 
 export default class Project extends React.Component {
     static defaultProps = {
@@ -11,22 +12,23 @@ export default class Project extends React.Component {
             push: () => {}
         },
     }
-    static contextType = ApiContext;
+    static contextType = Context;
 
     handleClickDelete = (e) => {
         e.preventDefault()
         const projectId = this.props.id
         console.log(projectId)
 
-        fetch(`${config.API_ENDPOINT}/api/projects/${projectId}`, {
+        fetch(`${config.API_ENDPOINT}/projects/${projectId}`, {
             method: 'DELETE',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                'authorization': `Bearer ${TokenService.getAuthToken()}`,
             },
         })
             .then(() => {
                 console.log(`Deleting the project.`)
-                this.props.history.push('/projects')
+                this.props.history.push('/user/projects')
                 this.context.deleteProject(projectId)
             })
             .catch(error => {
