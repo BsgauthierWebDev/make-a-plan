@@ -1,5 +1,6 @@
 import React from 'react';
 import Project from '../Project/Project';
+import Steps from '../Steps/Steps';
 import Context from '../../context';
 import ProjectApiService from '../../services/project-api-service';
 
@@ -59,15 +60,27 @@ export default class ProjectPageMain extends React.Component {
                 </div>
                 <div className = 'ProjectPageMain__materials'>
                     <h4>Materials: </h4>
-                    {materials.item.split(/\n \r|\n/).map((para, i) =>
+                    {/* {materials.item.split(/\n \r|\n/).map((para, i) =>
                     <p key = {i}>{para}</p>
-                    )}
+                    )} */}
                 </div>
                 <div className = 'ProjectPageMain__steps'>
                     <h4>Steps: </h4>
-                    {steps.step.split(/\n \r|\n/).map((para, i) =>
+                        <ul>
+                            {steps.map(step =>
+                                <li key = {step.id}>
+                                    <Steps
+                                        id = {step.id}
+                                        name = {step.name}
+                                        modified = {step.modified}
+                                        completed = {step.completed}
+                                    />
+                                </li>
+                            )}
+                        </ul>
+                    {/* {steps.step.split(/\n \r|\n/).map((para, i) =>
                     <p key = {i}>{para}</p>
-                    )}
+                    )} */}
                 </div>
             </section>
         )

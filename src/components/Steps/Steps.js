@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import Context from '../../context';
 import config from '../../config';
+import TokenService from '../../services/token-service';
 import { isThisISOWeek } from 'date-fns';
 
 export default class Steps extends React.Component {
@@ -51,7 +52,7 @@ export default class Steps extends React.Component {
     }
 
     render() {
-        const {step, id} = this.props
+        const {step, id, modified, completed} = this.props
         if (!this.props.id) {
             return <Redirect to = '/user/projects' />
         }
@@ -68,11 +69,7 @@ export default class Steps extends React.Component {
                                 checked = {this.state.completed}
                                 onChange = {this.handleCompleted}>
                                     <li key = {step.id}>
-                                        <Project
-                                            id = {project.id}
-                                            name = {project.name}
-                                            modified = {project.modified}
-                                        />
+                                        {step}
                                     </li>
                                 </input>
                             )}
