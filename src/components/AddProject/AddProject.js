@@ -67,29 +67,6 @@ export default class AddProjects extends React.Component {
         this.updateModified(modified);
     }
 
-    // handleSubmit = e => {
-    //     e.preventDefault();
-    //     const {
-    //         name,
-    //         description,
-    //         materials,
-    //         steps
-    //     } = e.target
-    //     ProjectApiService.postProject({
-    //         name: name.value,
-    //         description: description.value,
-    //         materials: materials.value,
-    //         steps: steps.value
-    //     })
-    //         .then(resProject => {
-    //             this.context.addProject(resProject)
-    //             this.props.history.push('/user/projects')
-    //         })
-    //         .catch(error => {
-    //             console.error('add project ', {error})
-    //         })
-    // }
-
     handleSubmit(e) {
         e.preventDefault();
         const project = {
@@ -202,12 +179,21 @@ export default class AddProjects extends React.Component {
                         <div className = 'AddProject__materials'>
                             <label htmlFor = 'materialsInput'>* Materials: </label>
                             <br />
-                            <textarea
-                                name = 'AddProject__materials-input'
-                                rows = '10'
-                                placeholder = 'add the materials necessary to complete your project'
+                            <input 
+                                type = 'text'
+                                className = 'AddProject__materials-input'
+                                name = 'materials'
+                                id = 'materials'
+                                placeholder = 'project materials'
                                 onChange = {e => this.updateMaterials(e.target.value, modified)}
                                 required />
+                                {'  '}
+                            <button
+                                type = 'button'
+                                className = 'newInput'
+                                >
+                                    Add
+                                </button>
                                 {this.state.materials.touched && (
                                     <ValidationError message = {materialsError} />
                                 )}
@@ -215,12 +201,21 @@ export default class AddProjects extends React.Component {
                         <div className = 'AddProject__steps'>
                             <label htmlFor = 'stepsInput'>* Steps</label>
                             <br />
-                            <textarea
-                                name = 'AddProject__steps-input'
-                                rows = '10'
-                                placeholder = 'add the steps necessary to complete your project'
+                            <input
+                                type = 'text'
+                                className = 'AddProject__steps-input'
+                                name = 'steps'
+                                id = 'steps'
+                                placeholder = 'project steps'
                                 onChange = {e => this.updateSteps(e.target.value, modified)}
                                 required />
+                                {'  '}
+                            <button
+                                type = 'button'
+                                className = 'newInput'
+                                >
+                                    Add
+                                </button>
                                 {this.state.steps.touched && (
                                     <ValidationError message = {stepsError} />
                                 )}
