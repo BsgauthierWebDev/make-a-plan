@@ -1,6 +1,5 @@
 import React from 'react';
 import Project from '../Project/Project';
-import Steps from '../Steps/Steps';
 import Context from '../../context';
 import ProjectApiService from '../../services/project-api-service';
 
@@ -35,8 +34,8 @@ export default class ProjectPageMain extends React.Component {
             materials = [],
             steps = []
         } = this.context
-        const {projectId} = this.props.match.params
-        // const {projectId, itemId, stepId} = this.props.match.params
+        // const {projectId} = this.props.match.params
+        const {projectId, itemId, stepId} = this.props.match.params
         const project = projects.find(project => project.id == projectId)
         // const materials = materials.find(item => item.id == itemId)
         // const steps = steps.find(step => step.id == stepId)
@@ -47,8 +46,6 @@ export default class ProjectPageMain extends React.Component {
                     id = {project.id}
                     name = {project.name}
                     modified = {project.modified}
-                    item = {materials.item}
-                    step = {steps.step}
                     // onDeleteProject = {this.handleDeleteProject}
                     history = {this.props.history}
                 />
@@ -60,27 +57,21 @@ export default class ProjectPageMain extends React.Component {
                 </div>
                 <div className = 'ProjectPageMain__materials'>
                     <h4>Materials: </h4>
-                    {/* {materials.item.split(/\n \r|\n/).map((para, i) =>
-                    <p key = {i}>{para}</p>
-                    )} */}
+                    <ul>
+                        {project.materials.map(material =>
+                            <li key = {material.id}>
+                                {material.item}
+                            </li>)}
+                    </ul>
                 </div>
                 <div className = 'ProjectPageMain__steps'>
                     <h4>Steps: </h4>
-                        <ul>
-                            {steps.map(step =>
-                                <li key = {step.id}>
-                                    <Steps
-                                        id = {step.id}
-                                        name = {step.name}
-                                        modified = {step.modified}
-                                        completed = {step.completed}
-                                    />
-                                </li>
-                            )}
-                        </ul>
-                    {/* {steps.step.split(/\n \r|\n/).map((para, i) =>
-                    <p key = {i}>{para}</p>
-                    )} */}
+                    <ol>
+                        {project.steps.map(step =>
+                            <li key = {step.id}>
+                                {step.step}
+                            </li>)}
+                    </ol>
                 </div>
             </section>
         )

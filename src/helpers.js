@@ -6,9 +6,3 @@ export const findProject = (projects = [], projectId) =>
 //         ? this.renderLoginLink()
 //         : projects.filter(project => project.user_id = userId)
 // )
-
-export const getStepsForProject = (steps = [], project_id) => (
-    (!project_id)
-        ? steps
-        : steps.filter(step => step.project_id == project_id)
-)
