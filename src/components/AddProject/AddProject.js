@@ -1,4 +1,6 @@
 import React from 'react';
+import MaterialsInput from '../MaterialsInput/MaterialsInput';
+import StepsInput from '../StepsInput/StepsInput';
 import ProjectError from '../../ProjectError';
 import ValidationError from '../../ValidationError';
 import Context from '../../context';
@@ -27,7 +29,9 @@ export default class AddProjects extends React.Component {
             steps: {
                 value: '',
                 touched: false
-            }
+            },
+            materialsInputs: ['input-0'],
+            stepsInputs: ['input-0']
         };
     }
 
@@ -140,6 +144,16 @@ export default class AddProjects extends React.Component {
         this.props.history.push('/user/projects')
     };
 
+    appendMaterialInput() {
+        var newMaterialInput = `materialsInput-${this.state.materialsInputs.length}`;
+        this.setState(prevState => ({materialsInputs: prevState.materialsInputs.concat([newMaterialInput])}));
+    }
+
+    appendStepInput() {
+        var newStepInput = `stepsInput-${this.state.stepsInputs.length}`;
+        this.setState(prevState => ({stepsInputs: prevState.stepsInputs.concat([newStepInput])}));
+    }
+
     render() {
         const nameError = this.validateName();
         const materialsError = this.validateMaterials();
@@ -179,20 +193,13 @@ export default class AddProjects extends React.Component {
                         <div className = 'AddProject__materials'>
                             <label htmlFor = 'materialsInput'>* Materials: </label>
                             <br />
-                            <input 
-                                type = 'text'
-                                className = 'AddProject__materials-input'
-                                name = 'materials'
-                                id = 'materials'
-                                placeholder = 'project materials'
-                                onChange = {e => this.updateMaterials(e.target.value, modified)}
-                                required />
-                                {'  '}
+                            {this.state.materialsInputs.map(input => <MaterialsInput key = {input} />)}
                             <button
                                 type = 'button'
                                 className = 'newInput'
+                                onClick = {() => this.appendMaterialInput()}
                                 >
-                                    Add
+                                    Add Materials
                                 </button>
                                 {this.state.materials.touched && (
                                     <ValidationError message = {materialsError} />
@@ -201,20 +208,13 @@ export default class AddProjects extends React.Component {
                         <div className = 'AddProject__steps'>
                             <label htmlFor = 'stepsInput'>* Steps</label>
                             <br />
-                            <input
-                                type = 'text'
-                                className = 'AddProject__steps-input'
-                                name = 'steps'
-                                id = 'steps'
-                                placeholder = 'project steps'
-                                onChange = {e => this.updateSteps(e.target.value, modified)}
-                                required />
-                                {'  '}
+                            {this.state.stepsInputs.map(input => <StepsInput key = {input} />)}
                             <button
                                 type = 'button'
                                 className = 'newInput'
+                                onClick = {() => this.appendStepInput()}
                                 >
-                                    Add
+                                    Add Steps
                                 </button>
                                 {this.state.steps.touched && (
                                     <ValidationError message = {stepsError} />
