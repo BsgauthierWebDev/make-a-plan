@@ -51,6 +51,7 @@ class App extends Component {
             ]);
         })
         .then(([projects, materials, steps]) => {
+          console.log(projects)
           for (let id in projects) {
             let project = projects[id]
             project.materials = []

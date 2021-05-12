@@ -2,6 +2,7 @@ import React from 'react';
 import Project from '../Project/Project';
 import Context from '../../context';
 import ProjectApiService from '../../services/project-api-service';
+import './ProjectPageMain.css';
 
 export default class ProjectPageMain extends React.Component {
     static defaultProps = {

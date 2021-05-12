@@ -30,8 +30,8 @@ export default class AddProjects extends React.Component {
                 value: '',
                 touched: false
             },
-            materialsInputs: ['input-0'],
-            stepsInputs: ['input-0']
+            materialsInputs: ['materialsInput-0'],
+            stepsInputs: ['stepsInput-0']
         };
     }
 
@@ -73,13 +73,14 @@ export default class AddProjects extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        console.log(this.state)
         const project = {
             name: this.state.name.value,
             // created: this.state.created.value,
             modified: this.state.modified,
             description: this.state.description.value,
-            materials: this.state.materials.value,
-            steps: this.state.steps.value
+            materials: this.state.materialsInputs.map(name => this.state.materials[name]),
+            steps: this.state.stepsInputs.map(name => this.state.steps[name])
         }
         console.log(project.modified)
         fetch(`${config.API_ENDPOINT}/projects`, {
@@ -154,6 +155,20 @@ export default class AddProjects extends React.Component {
         this.setState(prevState => ({stepsInputs: prevState.stepsInputs.concat([newStepInput])}));
     }
 
+    setMaterialState(e) {
+        var id = e.target.id;
+        var value = e.target.value;
+        this.state.materials[id] = value;
+        this.setState({materials: this.state.materials});
+    }
+
+    setStepsState(e) {
+        var id = e.target.id;
+        var value = e.target.value;
+        this.state.steps[id] = value;
+        this.setState({steps: this.state.steps});
+    }
+
     render() {
         const nameError = this.validateName();
         const materialsError = this.validateMaterials();
@@ -193,7 +208,12 @@ export default class AddProjects extends React.Component {
                         <div className = 'AddProject__materials'>
                             <label htmlFor = 'materialsInput'>* Materials: </label>
                             <br />
-                            {this.state.materialsInputs.map(input => <MaterialsInput key = {input} />)}
+                            {this.state.materialsInputs.map(input => 
+                                <MaterialsInput 
+                                    key = {input}
+                                    itemNumber = {input}
+                                    onChange = {this.setMaterialState.bind(this)} 
+                                />)}
                             <button
                                 type = 'button'
                                 className = 'newInput'
@@ -201,14 +221,21 @@ export default class AddProjects extends React.Component {
                                 >
                                     Add Materials
                                 </button>
-                                {this.state.materials.touched && (
+                                {this.state.materials.touched
+                                 && (
                                     <ValidationError message = {materialsError} />
-                                )}
+                                )
+                                }
                         </div>
                         <div className = 'AddProject__steps'>
                             <label htmlFor = 'stepsInput'>* Steps</label>
                             <br />
-                            {this.state.stepsInputs.map(input => <StepsInput key = {input} />)}
+                            {this.state.stepsInputs.map(input => 
+                                <StepsInput 
+                                    key = {input} 
+                                    itemNumber = {input}
+                                    onChange = {this.setStepsState.bind(this)}
+                                />)}
                             <button
                                 type = 'button'
                                 className = 'newInput'
@@ -216,9 +243,11 @@ export default class AddProjects extends React.Component {
                                 >
                                     Add Steps
                                 </button>
-                                {this.state.steps.touched && (
+                                {this.state.steps.touched 
+                                && (
                                     <ValidationError message = {stepsError} />
-                                )}
+                                )
+                                }
                         </div>
                         <div>
                             <button type = 'submit' className = 'AddProject__button'>
