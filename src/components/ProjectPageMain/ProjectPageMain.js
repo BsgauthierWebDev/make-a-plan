@@ -12,23 +12,6 @@ export default class ProjectPageMain extends React.Component {
     }
     static contextType = Context
 
-    // handleDeleteProject = projectId => {
-    //     this.props.history.push('/projects')
-    // }
-
-    // handleDeleteProject = e => {
-    //     e.preventDefault()
-    //     const {projectId} = this.props.match.params
-    //     ProjectApiService.deleteProject({id: projectId})
-    //         .then(res => {
-    //             this.context.deleteProject(projectId)
-    //             this.props.history.goBack()
-    //         })
-    //         .catch(error => {
-    //             console.error('delete project', {error})
-    //         })
-    // }
-
     render() {
         const {
             projects = [],
@@ -60,18 +43,25 @@ export default class ProjectPageMain extends React.Component {
                     <h4>Materials: </h4>
                     <ul>
                         {project.materials.map(material =>
-                            <li key = {material.id}>
-                                {material.item}
-                            </li>)}
+                            <label className = 'liWrap'>
+                                <input type = 'checkbox' />
+                                {/* Display this inline */}
+                                <li key = {material.id}>
+                                    {material.item}
+                                </li>
+                            </label>)}
                     </ul>
                 </div>
                 <div className = 'ProjectPageMain__steps'>
                     <h4>Steps: </h4>
                     <ol>
                         {project.steps.map(step =>
-                            <li key = {step.id}>
-                                {step.step}
-                            </li>)}
+                            <label className = 'liWrap'>
+                                <input type = 'checkbox' />
+                                <li key = {step.id}>
+                                    {step.step}
+                                </li>
+                            </label>)}
                     </ol>
                 </div>
             </section>
