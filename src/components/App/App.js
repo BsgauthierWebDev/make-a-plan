@@ -4,7 +4,6 @@ import LandingPage from '../LandingPage/LandingPage';
 import LogIn from '../LogIn/LogIn';
 import SignUp from '../SignUp/SignUp';
 import DemoProject from '../DemoProject/DemoProject';
-import ContactUs from '../ContactUs/ContactUs';
 import Dashboard from '../Dashboard/Dashboard';
 import TestPage from '../TestPage/TestPage';
 import ProjectListMain from '../ProjectListMain/ProjectListMain';
@@ -123,10 +122,6 @@ handleDeleteProject = projectId => {
           component = {DemoProject}
         />
         <Route
-          path = '/contact'
-          component = {ContactUs}
-        />
-        <Route
           path = '/user/test-page'
           component = {TestPage}
         />
@@ -153,7 +148,6 @@ handleDeleteProject = projectId => {
             <Link to = '/log-in'>Log In | </Link>
             <Link to = '/sign-up'>Sign Up | </Link>
             <Link to = '/user'>My Account | </Link>
-            <Link to = '/contact'>Contact Us |</Link>
             <Link to = '/test'>Test Page | </Link>
           </nav>
         </header> */}
@@ -169,9 +163,6 @@ handleDeleteProject = projectId => {
         </main>
         <footer>
           <h6>Copyright 2021 bsgauthierwebdev</h6>
-          <h6>
-            <Link to = '/contact'>Contact us</Link>
-            </h6>
           </footer>
       </div>
       </Context.Provider>

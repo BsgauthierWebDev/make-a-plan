@@ -14,7 +14,6 @@ import DashboardNav from '../DashboardNav/DashboardNav';
 // import Store from '../../Store';
 import Context from '../../context';
 
-// import ContactUs from '../ContactUs/ContactUs';
 // import context from '../../context';
 
 export default class Dashboard extends React.Component {
