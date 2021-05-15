@@ -73,38 +73,15 @@ export default class AddProjects extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log(this.state)
         const project = {
             name: this.state.name.value,
-            // created: this.state.created.value,
             modified: this.state.modified,
             description: this.state.description.value,
             materials: this.state.materialsInputs.map(name => this.state.materials[name]),
             steps: this.state.stepsInputs.map(name => this.state.steps[name])
         }
-        console.log(project.modified)
-        fetch(`${config.API_ENDPOINT}/projects`, {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'content-type': 'application/json',
-                'authorization': `Bearer ${TokenService.getAuthToken()}`,
-            },
-            body: JSON.stringify(project)
-        })
-            .then(res => res.json())
-            .then(resJSON => {
-                console.log(resJSON)
-                const newProject = [...this.state.projects, resJSON]
-                console.log(newProject)
-                this.setState({projects: newProject})
-                console.log(this.state)
-            // this.context.addProject(project)
-            this.props.history.push('/user/projects')
-        })
-        .catch(err => {
-            console.log(err)
-        })
+        this.context.addProject(project)
+        this.props.history.push('/user/projects')
     }
 
     timeStamp() {

@@ -75,6 +75,30 @@ class App extends Component {
         });
 }
 
+addProject = projectData => {
+  fetch(`${config.API_ENDPOINT}/projects`, {
+    method: 'POST',
+    headers: {
+        Accept: 'application/json',
+        'content-type': 'application/json',
+        'authorization': `Bearer ${TokenService.getAuthToken()}`,
+    },
+    body: JSON.stringify(projectData)
+  })
+    .then(res => res.json())
+    .then(resJSON => {
+        console.log(resJSON)
+        const newProject = [...this.state.projects, resJSON]
+        console.log(newProject)
+        this.setState({projects: newProject})
+        console.log(this.state)
+    this.props.history.push('/user/projects')
+  })
+  .catch(err => {
+      console.log(err)
+  })
+}
+
 handleDeleteProject = projectId => {
   this.setState({
     projects: this.state.projects.filter(project => project.id !== projectId)
@@ -134,6 +158,7 @@ handleDeleteProject = projectId => {
       projects: this.state.projects,
       materials: this.state.materials,
       steps: this.state.steps,
+      addProject: this.addProject,
       deleteProject: this.handleDeleteProject,
     }
 
