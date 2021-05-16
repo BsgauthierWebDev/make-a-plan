@@ -23,4 +23,4 @@ class ProjectError extends Component {
     }
 }
 
-export default ProjectListProvider;
+export default ProjectError;

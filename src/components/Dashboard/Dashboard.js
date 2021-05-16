@@ -27,15 +27,12 @@ export default class Dashboard extends React.Component {
     }
 
     render() {
-    const {users} = this.context
-    const {username} = this.props
-
     return (
     <div className = 'Dashboard'>
         <div className = 'Dashboard__main-intro'>
         <h1>
             {TokenService.hasAuthToken()
-                ? `Hello ${username}, welcome to your account`
+                ? `Hello! Welcome to your account!`
                 : 'Demo Dashboard'}
         </h1>
         </div>

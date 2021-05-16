@@ -1,6 +1,5 @@
 import React from 'react';
 import Context from '../../context';
-import moment from 'moment';
 
 export default class MaterialsInput extends React.Component {
     constructor(props) {
@@ -17,18 +16,7 @@ export default class MaterialsInput extends React.Component {
 
     static contextType = Context;
 
-    updateMaterials(materials, modified) {
-        this.setState({materials: {value: materials, touched: true}});
-        this.updateModified(modified);
-    }
-
-    timeStamp() {
-        moment().toDate()
-    }
-
     render() {
-        const modified = moment().toDate();
-
         return (
             <div className = 'MaterialsInput'>
                 <input 

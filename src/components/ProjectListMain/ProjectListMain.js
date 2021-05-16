@@ -12,7 +12,6 @@ export default class ProjectListMain extends React.Component {
     static contextType = Context
 
     render() {
-        const {user_id} = this.props.match.params
         const {projects = []} = this.context
 
         return (

@@ -1,7 +1,6 @@
 import React from 'react';
 import Project from '../Project/Project';
 import Context from '../../context';
-import ProjectApiService from '../../services/project-api-service';
 import './ProjectPageMain.css';
 
 export default class ProjectPageMain extends React.Component {
@@ -16,7 +15,7 @@ export default class ProjectPageMain extends React.Component {
         const {
             projects = []
         } = this.context
-        const {projectId, itemId, stepId} = this.props.match.params
+        const {projectId} = this.props.match.params
         const project = projects.find(project => project.id == projectId)
 
         return (

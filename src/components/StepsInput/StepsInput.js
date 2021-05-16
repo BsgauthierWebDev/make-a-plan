@@ -1,6 +1,5 @@
 import React from 'react';
 import Context from '../../context';
-import moment from 'moment';
 
 export default class StepsInput extends React.Component {
     constructor(props) {
@@ -16,22 +15,7 @@ export default class StepsInput extends React.Component {
     }
     static contextType = Context;
 
-    updateSteps(steps, modified) {
-        this.setState({steps: {value: steps, touched: true}});
-        this.updateModified(modified);
-    }
-
-    updateModified(modified) {
-        this.setState({modified: modified});
-    }
-
-    timeStamp() {
-        moment().toDate()
-    }
-
     render() {
-        const modified = moment().toDate();
-
         return (
             <div className = 'StepsInput'>
                 <input
