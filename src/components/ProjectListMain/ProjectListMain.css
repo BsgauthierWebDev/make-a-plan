@@ -1,0 +1,12 @@
+.ProjectListMain__button-container {
+    max-width: 380px;
+    margin: 0 10px;
+}
+
+/* .ProjectListMain__add-project-button {
+    margin: 0 auto 20px;
+} */
+
+.ProjectListMain__add-project-button:hover {
+    color: white;
+}

@@ -1,7 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Project from '../Project/Project';
-import Context from '../../context'
+import ButtonIcon from '../Button/Button';
+import Context from '../../context';
+import './ProjectListMain.css';
 
 export default class ProjectListMain extends React.Component {
     static defaultProps = {
@@ -17,14 +20,16 @@ export default class ProjectListMain extends React.Component {
         return (
             <section className = 'ProjectListMain'>
                 <div className = 'ProjectListMain__button-container'>
-                    <Link to = '/user/new-project'>
-                        <button
-                            type = 'button'
-                            className = 'ProjectListMain__add-project-button'
-                        >
-                            Add Project
-                        </button>
-                    </Link>
+                    <ButtonIcon
+                        tag = {Link}
+                        to = '/user/new-project'
+                        type = 'button'
+                        className = 'ProjectListMain__add-project-button'
+                    >
+                        <FontAwesomeIcon icon = 'plus' />
+                        <br />
+                        New
+                    </ButtonIcon>
                 </div>
                 <div className = 'ProjectListMain__projects'>
                     <ul>

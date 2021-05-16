@@ -1,9 +1,11 @@
 import React from 'react';
 import {Redirect, Link} from 'react-router-dom';
 import {format} from 'date-fns';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Context from '../../context';
 import config from '../../config';
 import TokenService from '../../services/token-service';
+import ButtonIcon from '../Button/Button';
 
 export default class Project extends React.Component {
     static defaultProps = {
@@ -47,13 +49,17 @@ export default class Project extends React.Component {
                         {name}
                     </Link>
                 </h2>
-                <button
+                <div>
+                <ButtonIcon
                     className = 'Project__delete'
                     type = 'button'
                     onClick = {this.handleClickDelete}
                 >
-                    Delete
-                </button>
+                    <FontAwesomeIcon icon = 'trash-alt' />
+                    <br />
+                    Delete                    
+                </ButtonIcon>
+                </div>
                 <div className = 'Project__dates'>
                     <div className = 'Project__dates-modified'>
                         Modified
