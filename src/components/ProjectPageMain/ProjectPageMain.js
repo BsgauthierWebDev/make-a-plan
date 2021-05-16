@@ -11,6 +11,18 @@ export default class ProjectPageMain extends React.Component {
     }
     static contextType = Context
 
+    state = {
+        isChecked: false
+    }
+
+    toggleCheckboxChange = () => {
+        this.setState(({isChecked}) => (
+            {
+                isChecked: !isChecked
+            }
+        ));
+    }
+
     render() {
         const {
             projects = []
@@ -38,7 +50,12 @@ export default class ProjectPageMain extends React.Component {
                         {project.materials.map(material =>
                             <label className = 'liWrap'>
                                 <li key = {material.id}>
-                                    {material.item}
+                                <input
+                                    type = 'checkbox'
+                                    // checked = {isChecked}
+                                    onChange = {this.toggleCheckboxChange}
+                                />
+                                {material.item}
                                 </li>
                             </label>)}
                     </ul>
@@ -49,6 +66,11 @@ export default class ProjectPageMain extends React.Component {
                         {project.steps.map(step =>
                             <label className = 'liWrap'>
                                 <li key = {step.id}>
+                                    <input
+                                        type = 'checkbox'
+                                        // checked = {isChecked}
+                                        onChange = {this.toggleCheckboxChange}
+                                    />
                                     {step.step}
                                 </li>
                             </label>)}
