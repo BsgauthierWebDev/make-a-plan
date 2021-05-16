@@ -47,11 +47,11 @@ export class ProjectListProvider extends Component {
     
     handleLog = e => {
         this.setState(prevState => {
-            return {
-                isLoggedIn: !prevState.isLoggedIn
-            }
-        })
-    }
+          return {
+            isLoggedIn: !prevState.isLoggedIn
+          }
+      })
+      }
 
     render() {
         const value = {

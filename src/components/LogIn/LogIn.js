@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Context from '../../context';
-//import ValidationError from '../ValidationError';
 import AuthApiService from '../../services/auth-api-service';
 import TokenService from '../../services/token-service';
 import './LogIn.css';

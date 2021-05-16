@@ -5,9 +5,6 @@ import ProjectError from '../../ProjectError';
 import ValidationError from '../../ValidationError';
 import Context from '../../context';
 import moment from 'moment';
-import ProjectApiService from '../../services/project-api-service';
-import TokenService from '../../services/token-service';
-import config from '../../config';
 
 export default class AddProjects extends React.Component {    
     constructor(props) {
@@ -42,10 +39,6 @@ export default class AddProjects extends React.Component {
     }
 
     static contextType = Context
-    //collect required data before project submit
-    // updateValue = (value, key) => {
-    //     this.setState({[key]: {value: value}})
-    // }
 
     updateName(name, modified) {
         this.setState({name: {value: name, touched: true}});

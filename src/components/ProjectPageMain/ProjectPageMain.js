@@ -14,15 +14,10 @@ export default class ProjectPageMain extends React.Component {
 
     render() {
         const {
-            projects = [],
-            materials = [],
-            steps = []
+            projects = []
         } = this.context
-        // const {projectId} = this.props.match.params
         const {projectId, itemId, stepId} = this.props.match.params
         const project = projects.find(project => project.id == projectId)
-        // const materials = materials.find(item => item.id == itemId)
-        // const steps = steps.find(step => step.id == stepId)
 
         return (
             <section className = 'ProjectPageMain'>
@@ -30,22 +25,19 @@ export default class ProjectPageMain extends React.Component {
                     id = {project.id}
                     name = {project.name}
                     modified = {project.modified}
-                    // onDeleteProject = {this.handleDeleteProject}
                     history = {this.props.history}
                 />
                 <div className = 'ProjectPageMain__description'>
-                    <h4>Description: </h4>
+                    <h3>Project Details: </h3>
                     {project.description.split(/\n \r|\n/).map((para, i) =>
                         <p key = {i}>{para}</p>
                     )}
                 </div>
                 <div className = 'ProjectPageMain__materials'>
-                    <h4>Materials: </h4>
+                    <h3>Required Materials: </h3>
                     <ul>
                         {project.materials.map(material =>
                             <label className = 'liWrap'>
-                                <input type = 'checkbox' />
-                                {/* Display this inline */}
                                 <li key = {material.id}>
                                     {material.item}
                                 </li>
@@ -53,11 +45,10 @@ export default class ProjectPageMain extends React.Component {
                     </ul>
                 </div>
                 <div className = 'ProjectPageMain__steps'>
-                    <h4>Steps: </h4>
+                    <h3>Instructions: </h3>
                     <ol>
                         {project.steps.map(step =>
                             <label className = 'liWrap'>
-                                <input type = 'checkbox' />
                                 <li key = {step.id}>
                                     {step.step}
                                 </li>

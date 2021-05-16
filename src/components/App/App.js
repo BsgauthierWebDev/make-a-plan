@@ -5,11 +5,9 @@ import LogIn from '../LogIn/LogIn';
 import SignUp from '../SignUp/SignUp';
 import DemoProject from '../DemoProject/DemoProject';
 import Dashboard from '../Dashboard/Dashboard';
-import TestPage from '../TestPage/TestPage';
 import ProjectListMain from '../ProjectListMain/ProjectListMain';
 import ProjectPageMain from '../ProjectPageMain/ProjectPageMain';
 import AddProject from '../AddProject/AddProject';
-// import DashboardMain from '../DashboardMain/DashboardMain';
 import Context from '../../context';
 import NavBar from '../NavBar/NavBar';
 import TokenService from '../../services/token-service';
@@ -145,10 +143,6 @@ handleDeleteProject = projectId => {
           path = '/demo'
           component = {DemoProject}
         />
-        <Route
-          path = '/user/test-page'
-          component = {TestPage}
-        />
       </>
     )
   }
@@ -166,22 +160,11 @@ handleDeleteProject = projectId => {
       <Context.Provider value = {value}>
       <div className = 'App'>
         <NavBar />
-        {/* <header className = 'App__header'>
-          <h1>Make A Plan</h1>
-          <nav>
-            <Link to = 'demo'>Demo | </Link>
-            <Link to = '/log-in'>Log In | </Link>
-            <Link to = '/sign-up'>Sign Up | </Link>
-            <Link to = '/user'>My Account | </Link>
-            <Link to = '/test'>Test Page | </Link>
-          </nav>
-        </header> */}
         <div className = 'Dashboard__nav'>
             <Link to = '/'>Home | </Link>
             <Link to = '/user'>My Account | </Link>
             <Link to = '/user/projects'>My Projects | </Link>
-            <Link to = '/user/new-project'>Add a Project | </Link>
-            <Link to = '/user/test-page'>User Test</Link>
+            <Link to = '/user/new-project'>Add a Project </Link>
         </div>
         <main className = 'App__main'>
           {this.renderMainRoutes()}

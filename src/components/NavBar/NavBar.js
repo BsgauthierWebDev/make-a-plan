@@ -9,11 +9,11 @@ export default class NavBar extends React.Component {
     handleLogoutClick = () => {
         TokenService.clearAuthToken()
         this.context.handleLog()
-    }
+      }
 
     renderLogoutLink() {
         return (
-            <div className = 'Header__loggen-in'>
+            <div className = 'Header__logged-in'>
                 <Link
                     onClick = {this.handleLogoutClick}
                     to = '/'>
@@ -60,7 +60,7 @@ export default class NavBar extends React.Component {
         return (
             <div className = 'Header__dashboard-demo'>
                 <Link
-                    to = '/user'>
+                    to = '/demo'>
                         Demo
                 </Link>
             </div>
@@ -79,9 +79,6 @@ export default class NavBar extends React.Component {
     render() {
         return (
             <div className = 'NavBar'>
-                {/* <div className = 'button-wrapper'>
-                    <button className = 'icon' id = 'nav-button' onClick = {e => this.handleNav()}>Nav Menu</button>
-                </div> */}
                 <ul id = 'menu' className = 'NavManu'>
                     <li className = 'logo'><Link to = {'/'}>Make A Plan</Link></li>
                     {/* <li>
@@ -90,17 +87,12 @@ export default class NavBar extends React.Component {
                             : this.renderLoginLink()}
                     </li> */}
                     <li>{this.renderLoginLink()}</li>
-                    <li>{this.renderLogoutLink()}</li>
+                    {/* <li>{this.renderLogoutLink()}</li> */}
                     <li>{this.renderSignUpLink()}</li>
                     <li>
                         {TokenService.hasAuthToken()
                             ? this.renderUserLink()
                             : this.renderDemoLink()}
-                    </li>
-                    <li>
-                        {TokenService.hasAuthToken()
-                            ? null
-                            : <Link to = {'/sign-up'}>Create your account</Link>}
                     </li>
                 </ul>
             </div>
