@@ -17,7 +17,6 @@ export default class Project extends React.Component {
     handleClickDelete = (e) => {
         e.preventDefault()
         const projectId = this.props.id
-        console.log(projectId)
 
         fetch(`${config.API_ENDPOINT}/projects/${projectId}`, {
             method: 'DELETE',
