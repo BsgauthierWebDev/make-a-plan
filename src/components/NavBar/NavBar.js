@@ -80,7 +80,7 @@ export default class NavBar extends React.Component {
         return (
             <div className = 'NavBar'>
                 <ul id = 'menu' className = 'NavManu'>
-                    <li className = 'logo'><Link to = {'/'}>Make A Plan</Link></li>
+                    <li className = 'logo'><Link to = {'/'}>Make A Plan Home</Link></li>
                     {/* <li>
                         {TokenService.hasAuthToken()
                             ? this.renderLogoutLink()
