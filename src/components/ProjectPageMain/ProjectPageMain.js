@@ -4,6 +4,13 @@ import Context from '../../context';
 import './ProjectPageMain.css';
 
 export default class ProjectPageMain extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            materialsChecked: {},
+            stepsChecked: {}
+        }
+    }
     static defaultProps = {
         match: {
             params: {}
@@ -11,16 +18,32 @@ export default class ProjectPageMain extends React.Component {
     }
     static contextType = Context
 
-    state = {
-        isChecked: false
+    toggleMaterialsChecked = (e) => {
+        console.log(e);
+        let id = e.target.getAttribute('data-key');
+        let isChecked = e.target.checked;
+        let materialsChecked = this.state.materialsChecked
+        materialsChecked[id] = isChecked
+        console.log(materialsChecked);
+        this.setState({materialsChecked: materialsChecked}) ;
+        this.updateMaterialsCompleted(id, isChecked);
     }
 
-    toggleCheckboxChange = () => {
-        this.setState(({isChecked}) => (
-            {
-                isChecked: !isChecked
-            }
-        ));
+    updateMaterialsCompleted = (id, isChecked) => {
+        const materials = {
+            id: id,
+            completed: isChecked
+        }
+        this.context.markMaterialsCompleted(materials)
+    }
+
+    toggleStepsChecked = (e) => {
+        console.log(e);
+        let id = e.target.getAttribute('data-key');
+        let isChecked = e.target.checked;
+        let stepsChecked = this.state.stepsChecked
+        stepsChecked[id] = isChecked
+        this.setState({stepsChecked: stepsChecked})
     }
 
     render() {
@@ -52,8 +75,9 @@ export default class ProjectPageMain extends React.Component {
                                 <li key = {material.id}>
                                 <input
                                     type = 'checkbox'
-                                    // checked = {isChecked}
-                                    onChange = {this.toggleCheckboxChange}
+                                    data-key = {material.id}
+                                    checked = {material.completed == true}
+                                    onChange = {this.toggleMaterialsChecked}
                                 />
                                 {material.item}
                                 </li>
@@ -68,8 +92,9 @@ export default class ProjectPageMain extends React.Component {
                                 <li key = {step.id}>
                                     <input
                                         type = 'checkbox'
+                                        data-key = {step.id}
                                         // checked = {isChecked}
-                                        onChange = {this.toggleCheckboxChange}
+                                        onChange = {this.toggleStepsChecked}
                                     />
                                     {step.step}
                                 </li>

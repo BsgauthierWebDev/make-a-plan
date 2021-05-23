@@ -93,6 +93,34 @@ addProject = projectData => {
   })
 }
 
+markMaterialsCompleted = materialsData => {
+  console.log(materialsData)
+  fetch(`${config.API_ENDPOINT}/materials/${materialsData.id}`, {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'application/json',
+      'authorization': `Bearer ${TokenService.getAuthToken()}`,
+    },
+    body: JSON.stringify(materialsData)
+  })
+    // .then(res => res.json())
+    // .then(resJSON => {
+    //   const updatedMaterials = [...this.state.materials, resJSON]
+    //   this.setState({materisls: updatedMaterials})
+    // })
+    .then(res => res.json())
+    .then(resJSON => {
+      const materials = this.state.materials
+      console.log(materials)
+      materials[resJSON.id] = resJSON;
+      this.setState({materials: materials})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
 handleDeleteProject = projectId => {
   this.setState({
     projects: this.state.projects.filter(project => project.id !== projectId)
@@ -150,6 +178,7 @@ handleDeleteProject = projectId => {
       steps: this.state.steps,
       addProject: this.addProject,
       deleteProject: this.handleDeleteProject,
+      markMaterialsCompleted: this.markMaterialsCompleted
     }
 
     return (
