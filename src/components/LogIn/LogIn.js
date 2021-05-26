@@ -24,6 +24,7 @@ export default class LogIn extends Component {
         const {history} = this.props
         history.push('/user')
         TokenService.hasAuthToken()
+        this.context.fetchData()
     }
 
     handleSubmitJwtAuth = e => {

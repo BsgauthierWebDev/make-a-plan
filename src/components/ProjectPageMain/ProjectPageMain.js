@@ -43,7 +43,17 @@ export default class ProjectPageMain extends React.Component {
         let isChecked = e.target.checked;
         let stepsChecked = this.state.stepsChecked
         stepsChecked[id] = isChecked
-        this.setState({stepsChecked: stepsChecked})
+        console.log(stepsChecked);
+        this.setState({stepsChecked: stepsChecked}) ;
+        this.updateStepsCompleted(id, isChecked);
+    }
+
+    updateStepsCompleted = (id, isChecked) => {
+        const steps = {
+            id: id,
+            completed: isChecked
+        }
+        this.context.markStepsCompleted(steps)
     }
 
     render() {
@@ -76,7 +86,7 @@ export default class ProjectPageMain extends React.Component {
                                 <input
                                     type = 'checkbox'
                                     data-key = {material.id}
-                                    checked = {material.completed == true}
+                                    checked = {material.completed !== '' && material.completed !== false}
                                     onChange = {this.toggleMaterialsChecked}
                                 />
                                 {material.item}
@@ -93,7 +103,7 @@ export default class ProjectPageMain extends React.Component {
                                     <input
                                         type = 'checkbox'
                                         data-key = {step.id}
-                                        // checked = {isChecked}
+                                        checked = {step.completed !== '' && step.completed !== false}
                                         onChange = {this.toggleStepsChecked}
                                     />
                                     {step.step}

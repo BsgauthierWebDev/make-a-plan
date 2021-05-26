@@ -22,6 +22,9 @@ class App extends Component {
   static contextType = Context
 
   componentDidMount() {
+    this.fetchData()
+  }
+  fetchData = () => {
     const reqConfig = {
         headers: {
             'content-type': 'application/json',
@@ -104,17 +107,51 @@ markMaterialsCompleted = materialsData => {
     },
     body: JSON.stringify(materialsData)
   })
-    // .then(res => res.json())
-    // .then(resJSON => {
-    //   const updatedMaterials = [...this.state.materials, resJSON]
-    //   this.setState({materisls: updatedMaterials})
-    // })
     .then(res => res.json())
     .then(resJSON => {
-      const materials = this.state.materials
-      console.log(materials)
-      materials[resJSON.id] = resJSON;
-      this.setState({materials: materials})
+      const projects = this.state.projects
+      for (let i = 0; i < projects.length; i++) {
+        let project = projects[i]
+        for (let j = 0; j < project.materials.length; j++) {
+          let material = project.materials[j]
+          if (material.id == materialsData.id) {
+            projects[i].materials[j].completed = materialsData.completed
+          }
+        }
+      }
+      console.log(projects);
+      this.setState({projects: projects})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
+
+markStepsCompleted = stepsData => {
+  console.log(stepsData)
+  fetch(`${config.API_ENDPOINT}/steps/${stepsData.id}`, {
+    method: 'PATCH',
+    headers: {
+      Accept: 'application/json',
+      'content-type': 'application/json',
+      'authorization': `Bearer ${TokenService.getAuthToken()}`,
+    },
+    body: JSON.stringify(stepsData)
+  })
+    .then(res => res.json())
+    .then(resJSON => {
+      const projects = this.state.projects
+      for (let i = 0; i < projects.length; i++) {
+        let project = projects[i]
+        for (let j = 0; j < project.steps.length; j++) {
+          let step = project.steps[j]
+          if (step.id == stepsData.id) {
+            projects[i].steps[j].completed = stepsData.completed
+          }
+        }
+      }
+      console.log(projects);
+      this.setState({projects: projects})
     })
     .catch(err => {
       console.log(err)
@@ -176,9 +213,11 @@ handleDeleteProject = projectId => {
       projects: this.state.projects,
       materials: this.state.materials,
       steps: this.state.steps,
+      fetchData: this.fetchData,
       addProject: this.addProject,
       deleteProject: this.handleDeleteProject,
-      markMaterialsCompleted: this.markMaterialsCompleted
+      markMaterialsCompleted: this.markMaterialsCompleted,
+      markStepsCompleted: this.markStepsCompleted
     }
 
     return (
