@@ -44,9 +44,6 @@ export default class ProjectListMain extends React.Component {
                         )}
                     </ul>
                 </div>
-                <div>
-                    <h1>Test</h1>
-                </div>
             </section>
         )
     }

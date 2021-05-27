@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import DashboardNav from '../DashboardNav/DashboardNav';
 import Context from '../../context';
@@ -33,7 +33,7 @@ export default class Dashboard extends React.Component {
         <h1>
             {TokenService.hasAuthToken()
                 ? `Hello! Welcome to your account!`
-                : 'Demo Dashboard'}
+                : 'Please sign up for an account to start using the app.'}
         </h1>
         </div>
     </div>

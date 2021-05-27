@@ -19,12 +19,10 @@ export default class ProjectPageMain extends React.Component {
     static contextType = Context
 
     toggleMaterialsChecked = (e) => {
-        console.log(e);
         let id = e.target.getAttribute('data-key');
         let isChecked = e.target.checked;
         let materialsChecked = this.state.materialsChecked
         materialsChecked[id] = isChecked
-        console.log(materialsChecked);
         this.setState({materialsChecked: materialsChecked}) ;
         this.updateMaterialsCompleted(id, isChecked);
     }
@@ -38,12 +36,10 @@ export default class ProjectPageMain extends React.Component {
     }
 
     toggleStepsChecked = (e) => {
-        console.log(e);
         let id = e.target.getAttribute('data-key');
         let isChecked = e.target.checked;
         let stepsChecked = this.state.stepsChecked
         stepsChecked[id] = isChecked
-        console.log(stepsChecked);
         this.setState({stepsChecked: stepsChecked}) ;
         this.updateStepsCompleted(id, isChecked);
     }

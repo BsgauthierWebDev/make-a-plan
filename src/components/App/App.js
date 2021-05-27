@@ -97,7 +97,6 @@ addProject = projectData => {
 }
 
 markMaterialsCompleted = materialsData => {
-  console.log(materialsData)
   fetch(`${config.API_ENDPOINT}/materials/${materialsData.id}`, {
     method: 'PATCH',
     headers: {
@@ -119,7 +118,6 @@ markMaterialsCompleted = materialsData => {
           }
         }
       }
-      console.log(projects);
       this.setState({projects: projects})
     })
     .catch(err => {
@@ -128,7 +126,6 @@ markMaterialsCompleted = materialsData => {
 }
 
 markStepsCompleted = stepsData => {
-  console.log(stepsData)
   fetch(`${config.API_ENDPOINT}/steps/${stepsData.id}`, {
     method: 'PATCH',
     headers: {
@@ -150,7 +147,6 @@ markStepsCompleted = stepsData => {
           }
         }
       }
-      console.log(projects);
       this.setState({projects: projects})
     })
     .catch(err => {
