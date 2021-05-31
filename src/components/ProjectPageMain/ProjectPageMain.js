@@ -77,7 +77,7 @@ export default class ProjectPageMain extends React.Component {
                     <h3>Required Materials: </h3>
                     <ul>
                         {project.materials.map(material =>
-                            <label className = 'liWrap'>
+                            <label className = 'liWrap-materials'>
                                 <li key = {material.id}>
                                 <input
                                     type = 'checkbox'
@@ -94,7 +94,7 @@ export default class ProjectPageMain extends React.Component {
                     <h3>Instructions: </h3>
                     <ol>
                         {project.steps.map(step =>
-                            <label className = 'liWrap'>
+                            <label className = 'liWrap-steps'>
                                 <li key = {step.id}>
                                     <input
                                         type = 'checkbox'

@@ -1,12 +1,39 @@
+.ProjectListMain {
+    padding-left: 15px;
+}
+
 .ProjectListMain__button-container {
     max-width: 380px;
     margin: 0 10px;
 }
 
-/* .ProjectListMain__add-project-button {
-    margin: 0 auto 20px;
-} */
-
 .ProjectListMain__add-project-button:hover {
     color: white;
+}
+
+.ProjectListMain__projects {
+    list-style-type: none;
+    overflow: auto;
+    position: absolute;
+    top: 225px;
+    left: 0;
+    right: 0;
+    bottom: 85px;
+}
+
+.Project__title a:link {
+    color: black;
+}
+
+.Project__title a:visited {
+    color: black;
+}
+
+.Project__title a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+.Project__title a:active {
+    color: purple;
 }

@@ -22,7 +22,7 @@ export default class LogIn extends Component {
 
     handleLoginSuccess = () => {
         const {history} = this.props
-        history.push('/user')
+        history.push('/user/projects')
         TokenService.hasAuthToken()
         this.context.fetchData()
     }

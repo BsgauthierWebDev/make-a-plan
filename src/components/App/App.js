@@ -12,6 +12,7 @@ import Context from '../../context';
 import NavBar from '../NavBar/NavBar';
 import TokenService from '../../services/token-service';
 import config from '../../config';
+import './App.css';
 
 class App extends Component {
   state = {
@@ -160,6 +161,17 @@ handleDeleteProject = projectId => {
   });
 };
 
+renderUserLinks() {
+  return (
+    <div className = 'Dashboard__user-links'>
+      <Link to = '/'>Home | </Link>
+      <Link to = '/user'>My Account | </Link>
+      <Link to = '/user/projects'>My Projects | </Link>
+      <Link to = '/user/new-project'>Add a Project </Link>
+      <hr />
+    </div>
+  )
+}
 
   renderMainRoutes() {
     return (
@@ -219,18 +231,23 @@ handleDeleteProject = projectId => {
     return (
       <Context.Provider value = {value}>
       <div className = 'App'>
-        <NavBar />
-        <div className = 'Dashboard__nav'>
-            <Link to = '/'>Home | </Link>
-            <Link to = '/user'>My Account | </Link>
-            <Link to = '/user/projects'>My Projects | </Link>
-            <Link to = '/user/new-project'>Add a Project </Link>
+        <div className = 'App__navigation'>
+          <NavBar />
         </div>
-        <main className = 'App__main'>
-          {this.renderMainRoutes()}
-        </main>
+        <div className = 'App__display-area'>
+          <div className = 'App__dashboard-links'>
+            {TokenService.hasAuthToken()
+              ? this.renderUserLinks()
+              : ''}
+          </div>
+          <main className = 'App__main'>
+            {this.renderMainRoutes()}
+          </main>
+        </div>
         <footer>
+          <div className = 'footer'>
           <h6>Copyright 2021 bsgauthierwebdev</h6>
+          </div>
           </footer>
       </div>
       </Context.Provider>

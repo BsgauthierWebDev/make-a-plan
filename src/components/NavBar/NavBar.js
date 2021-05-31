@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import Context from '../../context';
+import './NavBar.css';
 
 export default class NavBar extends React.Component {
     static contextType = Context
@@ -79,22 +80,16 @@ export default class NavBar extends React.Component {
     render() {
         return (
             <div className = 'NavBar'>
-                <ul id = 'menu' className = 'NavManu'>
-                    <li className = 'logo'><Link to = {'/'}>Make A Plan Home</Link></li>
-                    {/* <li>
-                        {TokenService.hasAuthToken()
-                            ? this.renderLogoutLink()
-                            : this.renderLoginLink()}
-                    </li> */}
-                    <li>{this.renderLoginLink()}</li>
-                    {/* <li>{this.renderLogoutLink()}</li> */}
-                    <li>{this.renderSignUpLink()}</li>
-                    <li>
-                        {TokenService.hasAuthToken()
+                <div className = 'NavBar__left'>
+                <Link to = {'/'}>Make A Plan Home</Link>
+                {TokenService.hasAuthToken()
                             ? this.renderUserLink()
                             : this.renderDemoLink()}
-                    </li>
-                </ul>
+                </div>
+                <div className = 'NavBar__right'>
+                    {this.renderLoginLink()}
+                    {this.renderSignUpLink()}
+                </div>
             </div>
         )
     }

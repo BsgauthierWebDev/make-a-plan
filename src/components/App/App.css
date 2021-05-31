@@ -1,5 +1,47 @@
-.App {
+body {
+  background-image: url('https://i.pinimg.com/originals/ee/68/7d/ee687d35a8893cb0bd6fa9cfbc328d8a.jpg');
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.App__navigation {
+  color: white;
+  background-color: black;
+  padding: 10px 0px 10px 15px;
+}
+
+.App__navigation a {
+  color: white;
+}
+
+.App__display-area {
+  padding: 10px 15px;
+  overflow: auto;
+  position: absolute;
+  top: 63px;
+  left: 0;
+  right: 0;
+  bottom: 96px
+}
+
+.App__dashboard-links {
   text-align: center;
+}
+
+.App__dashboard-links a:link {
+  color: black;
+}
+
+.App__dashboard-links a:visited {
+  color: black;
+}
+
+.App__dashboard-links a:hover {
+  color: blue;
+  text-decoration: underline;
+}
+
+.App__dashboard-links a:active {
+  color: purple;
 }
 
 .App-logo {
@@ -28,11 +70,77 @@
   color: #61dafb;
 }
 
+.footer {
+  color: white;
+  background-color: black;
+  padding: 15px 0;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+a:link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:visited {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+a:active {
+  color: purple;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 15px;
+}
+
+ol {
+  padding-left: 15px;
+}
+
+@media all and (max-width: 425px) {
+  .LandingPage h1 {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .LandingPage__intro h2 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .LandingPage__description {
+    text-align: center;
+  }
+
+  .LandingPage__join {
+    text-align: center;
+  }
+
+  .App__dashboard-links {
+    font-size: 15px;
   }
 }

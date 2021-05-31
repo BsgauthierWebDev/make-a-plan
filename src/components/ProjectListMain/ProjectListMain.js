@@ -19,6 +19,9 @@ export default class ProjectListMain extends React.Component {
 
         return (
             <section className = 'ProjectListMain'>
+                <div className = 'ProjectListMain__intro'>
+                    <h2>Welcome to your account.</h2> 
+                </div>
                 <div className = 'ProjectListMain__button-container'>
                     <ButtonIcon
                         tag = {Link}
