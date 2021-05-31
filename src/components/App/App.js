@@ -165,7 +165,7 @@ renderUserLinks() {
   return (
     <div className = 'Dashboard__user-links'>
       <Link to = '/'>Home | </Link>
-      <Link to = '/user'>My Account | </Link>
+      {/* <Link to = '/user'>My Account | </Link> */}
       <Link to = '/user/projects'>My Projects | </Link>
       <Link to = '/user/new-project'>Add a Project </Link>
       <hr />
