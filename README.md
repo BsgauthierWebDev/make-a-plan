@@ -24,8 +24,11 @@ Make A Plan allows you to check off items as they are acquired and steps as they
 All of your projects are stored in your account, once it has been created, and will stay there until you delete the project.
 <br />
 ![Sign Up](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/sign-up.JPG)
+<br />
 ![Log In](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/log-in.JPG)
+<br />
 ![User Home](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/user-home.JPG)
+<br />
 ![User Project](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/user-project.JPG)
 
 Make A Plan is also mobile friendly!
