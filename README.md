@@ -14,20 +14,20 @@ Make A Plan is a site designed to get you more organized.
 
 Make A Plan stores your projects and keeps track of your progress, from start to finish.
 Simply input the materials you need and the instructions.
-![Add Project](/src/images/add-project.JPG)
+![Add Project](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/add-project.JPG)
 
 Make A Plan allows you to check off items as they are acquired and steps as they are completed, keeping track of things from start to finish.
-![Demo](/src/images/demo.JPG)
+![Demo](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/demo.JPG)
 
 All of your projects are stored in your account, once it has been created, and will stay there until you delete the project.
-![Sign Up](/src/images/sign-up.JPG)
-![Log In](/src/images/log-in.JPG)
-![User Home](/src/images/user-home.JPG)
-![User Project](/src/images/user-project.JPG)
+![Sign Up](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/demo.JPG)
+![Log In](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/demo.JPG)
+![User Home](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/user-home.JPG)
+![User Project](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/user-home.JPG)
 
 Make A Plan is also mobile friendly!
-![Mobile User Home](/src/images/mobile-user-home.JPG)
-![Mobile User Project](/src/images/mobile-user-project.JPG)
+![Mobile User Home](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/mobile-user-home.JPG)
+![Mobile User Project](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/mobile-user-home.JPG)
 
 # API Documentation
 [Make A Plan API Source Code](https://github.com/BsgauthierWebDev/make-a-plan-api "Make A Plan API Source Code")
