@@ -20,7 +20,7 @@ export default class ProjectListMain extends React.Component {
         return (
             <section className = 'ProjectListMain'>
                 <div className = 'ProjectListMain__intro'>
-                    <h2>Welcome to your account.</h2> 
+                    <h2>Welcome to your account. Start a new project or continue working on an existing one.</h2> 
                 </div>
                 <div className = 'ProjectListMain__button-container'>
                     <ButtonIcon

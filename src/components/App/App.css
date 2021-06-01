@@ -112,6 +112,22 @@ a:active {
   font-weight: bold;
 }
 
+.LandingPage {
+  text-align: center;
+}
+
+.LandingPage__intro h2 {
+  text-align: center;
+}
+
+.LandingPage__description {
+  text-align: center;
+}
+
+.LandingPage__join {
+  text-align: center;
+}
+
 ul {
   list-style-type: none;
   padding-left: 15px;
@@ -119,6 +135,18 @@ ul {
 
 ol {
   padding-left: 15px;
+}
+
+@media all and (min-width: 426px) {
+  .App__display-area {
+    padding: 25px 145px;
+    overflow: auto;
+    position: absolute;
+    top: 63px;
+    left: 0;
+    right: 0;
+    bottom: 96px
+  }
 }
 
 @media all and (max-width: 425px) {

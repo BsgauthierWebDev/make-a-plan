@@ -50,7 +50,7 @@ export default class NavBar extends React.Component {
         return (
             <div className = 'Header__dashboard-logged-in'>
                 <Link
-                    to = '/user'>
+                    to = '/user/projects'>
                         My Account
                     </Link>
             </div>

@@ -1,7 +1,7 @@
 .ProjectListMain {
-    padding-left: 15px;
-}
-
+    padding: 0px 125px;
+  }
+  
 .ProjectListMain__button-container {
     max-width: 380px;
     margin: 0 10px;
@@ -14,7 +14,6 @@
 .ProjectListMain__projects {
     list-style-type: none;
     overflow: auto;
-    position: absolute;
     top: 225px;
     left: 0;
     right: 0;
@@ -36,4 +35,14 @@
 
 .Project__title a:active {
     color: purple;
+}
+
+@media all and (max-width: 425px) {
+    .ProjectListMain {
+        padding: 5px 10px 30px 10px;
+    }
+
+    .ProjectListMain h2 {
+        font-size: 20px;
+    }
 }
