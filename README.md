@@ -10,7 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 <hr />
 
 Make A Plan is a site designed to get you more organized.
-![Landing Page](/src/images/landing-page.JPG)
+![Landing Page](https://github.com/BsgauthierWebDev/make-a-plan/blob/master/images/landing-page.JPG)
 
 Make A Plan stores your projects and keeps track of your progress, from start to finish.
 Simply input the materials you need and the instructions.
